@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\JugadoresController;
 
 /*
 |--------------------------------------------------------------------------
@@ -13,6 +14,14 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+Route::get('jugadores/refresh', [JugadoresController::class, 'refresh']);
+
+
+
 Route::get('/', function () {
-    return view('welcome');
+    return view('index');
 });
+
+
+
+

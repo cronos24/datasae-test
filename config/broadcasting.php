@@ -39,6 +39,9 @@ return [
                 'cluster' => env('PUSHER_APP_CLUSTER'),
                 'useTLS' => true,
             ],
+            'client_options' => [
+                'verify' =>true, // to disable TLS checks
+            ],
         ],
 
         'ably' => [
