@@ -37,7 +37,11 @@
                                 <li class="nav-item">
                                     <a class="nav-link" href="{{ route('jugadores.index') }}"> Jugadores</a>
                                 </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="{{ route('ruletas.index') }}"> Ruletas</a>
+                                </li>
                     </ul>
+
 
                     <!-- Right Side Of Navbar -->
                     <ul class="navbar-nav ms-auto">

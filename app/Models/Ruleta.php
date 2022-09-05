@@ -27,7 +27,31 @@ class Ruleta extends Model
 		'estado' => 'required',
     ];
 
-    protected $perPage = 20;
+    public function rules()
+    {
+        return [
+            'fecha' => 'required|date',
+            'estado' => 'required|string|max:1',
+        ];
+    }
+
+    public function messages()
+    {
+        return [
+          'required' => 'El campo <strong> ":attribute" </strong> es obligatorio.',
+          'max' => 'El campo <strong> ":attribute" </strong> excede el tamaño maximo permitido.',
+          'date' => 'El campo <strong> ":attribute" </strong> no tiene un formato de fecha valido.',
+        ];
+    }
+
+    public function attributes()
+    {
+        return [
+            'fecha' => 'Fecha',
+            'estado' => 'Estado'
+        ];
+    }
+
 
     /**
      * Attributes that should be mass-assignable.

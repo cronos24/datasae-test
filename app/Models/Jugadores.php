@@ -40,7 +40,6 @@ class Jugadores extends Model
     public function messages()
     {
         return [
-          'integer' => 'El campo <strong> ":attribute" </strong> debe ser un entero.',
           'required' => 'El campo <strong> ":attribute" </strong> es obligatorio.',
           'numeric' => 'El campo <strong> ":attribute" </strong> debe ser numerico.',
           'integer' => 'El campo <strong> ":attribute" </strong> debe ser un numero entero.',

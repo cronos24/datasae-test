@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\JugadoresController;
+use App\Http\Controllers\RuletaController;
 
 /*
 |--------------------------------------------------------------------------
@@ -15,7 +16,7 @@ use App\Http\Controllers\JugadoresController;
 */
 
 Route::get('jugadores/refresh', [JugadoresController::class, 'refresh']);
-
+Route::get('ruletas/refresh', [RuletaController::class, 'refresh']);
 
 
 Route::get('/', function () {
