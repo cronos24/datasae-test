@@ -8,27 +8,27 @@
 </p>
 
 ## Requisiros
-1- <a href="https://getcomposer.org/download/" target="_blank">Composer</a> 
-2- <a href="https://nodejs.org/es/download/" target="_blank">Node Js V14</a> 
-3- <a href="https://www.php.net/downloads" target="_blank">Php >= 7.3</a> 
-3- <a href="https://dashboard.pusher.com/" target="_blank">Pusher Account</a> 
+- 1- <a href="https://getcomposer.org/download/" target="_blank">Composer</a> 
+- 2- <a href="https://nodejs.org/es/download/" target="_blank">Node Js V14</a> 
+- 3- <a href="https://www.php.net/downloads" target="_blank">Php >= 7.3</a> 
+- 4- <a href="https://dashboard.pusher.com/" target="_blank">Pusher Account</a> 
 
 ## Instalación
 
 Siga en orden los siguientes pasos de instalación:
 
-1- git clone https://github.com/cronos24/datasae-test.git
-2- cd datasae-test
-3- composer install
-4- npm install
-5- php artisan key:generate
-6- Renombrar archivo .env.exmaple a .env
-7- Configurar archivo .env con nuestras credenciales de base de datos y de pusher.
-8- php artisan migrate
-9- Configurar nuestro cron en caso de querer probar la tarea automatizada <a href="https://laravel.com/docs/9.x/scheduling" target="_blank">documentación</a> 
-10- En caso de querer probar manualmente ejecutar el comando "php artisan spin:roulette"
-11- Ejecute los comandos para correr el servidor localmente "php artisan serve" y "npm run watch"
-12- En caso de querer subirlo a un hosting seguir recomendaciones de la documentación <a href="https://laravel.com/docs/9.x/deployment" target="_blank">Despliegue</a>  
+- 1- git clone https://github.com/cronos24/datasae-test.git
+- 2- cd datasae-test
+- 3- composer install
+- 4- npm install
+- 5- php artisan key:generate
+- 6- Renombrar archivo .env.exmaple a .env
+- 7- Configurar archivo .env con nuestras credenciales de base de datos y de pusher.
+- 8- php artisan migrate
+- 9- Configurar nuestro cron en caso de querer probar la tarea automatizada <a href="https://laravel.com/docs/9.x/scheduling" target="_blank">documentación</a> 
+- 10- En caso de querer probar manualmente ejecutar el comando "php artisan spin:roulette"
+- 11- Ejecute los comandos para correr el servidor localmente "php artisan serve" y "npm run watch"
+- 12- En caso de querer subirlo a un hosting seguir recomendaciones de la documentación <a href="https://laravel.com/docs/9.x/deployment" target="_blank">Despliegue</a>  
 
 
 en caso de tener alguna duda puede escribirme al siguiente correo: erickm124@gmail.com
