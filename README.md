@@ -7,60 +7,28 @@
 <a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
 </p>
 
+## Requisiros
+1- <a href="https://getcomposer.org/download/" target="_blank">Composer</a> 
+2- <a href="https://nodejs.org/es/download/" target="_blank">Node Js V14</a> 
+3- <a href="https://www.php.net/downloads" target="_blank">Php >= 7.3</a> 
+3- <a href="https://dashboard.pusher.com/" target="_blank">Pusher Account</a> 
+
 ## Instalación
 
 Siga en orden los siguientes pasos de instalación:
 
-- 1- git clone https://github.com/cronos24/datasae-test.git
-- 2- cd datasae-test
-- 3- composer install
-- 4- npm install
-- <a href="https://www.google.com/" target="_blank">Google</a>
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+1- git clone https://github.com/cronos24/datasae-test.git
+2- cd datasae-test
+3- composer install
+4- npm install
+5- php artisan key:generate
+6- Renombrar archivo .env.exmaple a .env
+7- Configurar archivo .env con nuestras credenciales de base de datos y de pusher.
+8- php artisan migrate
+9- Configurar nuestro cron en caso de querer probar la tarea automatizada <a href="https://laravel.com/docs/9.x/scheduling" target="_blank">documentación</a> 
+10- En caso de querer probar manualmente ejecutar el comando "php artisan spin:roulette"
+11- Ejecute los comandos para correr el servidor localmente "php artisan serve" y "npm run watch"
+12- En caso de querer subirlo a un hosting seguir recomendaciones de la documentación <a href="https://laravel.com/docs/9.x/deployment" target="_blank">Despliegue</a>  
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
 
-## Learning Laravel
-
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
-
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains over 1500 video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
-
-## Laravel Sponsors
-
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the Laravel [Patreon page](https://patreon.com/taylorotwell).
-
-### Premium Partners
-
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Cubet Techno Labs](https://cubettech.com)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[Many](https://www.many.co.uk)**
-- **[Webdock, Fast VPS Hosting](https://www.webdock.io/en)**
-- **[DevSquad](https://devsquad.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[OP.GG](https://op.gg)**
-- **[WebReinvent](https://webreinvent.com/?utm_source=laravel&utm_medium=github&utm_campaign=patreon-sponsors)**
-- **[Lendio](https://lendio.com)**
-
-## Contributing
-
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
-
-## Code of Conduct
-
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
-
-## Security Vulnerabilities
-
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
-
-## License
-
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+en caso de tener alguna duda puede escribirme al siguiente correo: erickm124@gmail.com
