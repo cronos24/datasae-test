@@ -160,6 +160,8 @@
         </v-toolbar>
         </template>
         <template v-slot:[`item.full_name`]="{ item }">{{ item.nombres +' '+ item.apellidos }}</template>
+        <template v-slot:[`item.telefono`]="{ item }">{{ parseInt(item.telefono) }}</template>
+        
         <template v-slot:[`item.acciones`]="{ item }">
             <v-icon
                 small
@@ -241,8 +243,7 @@
                 errors: []
             }
         },
-        methods: {
-
+        methods: {  
         crear() {
             this.dialog = true
             this.scenario = 'create'

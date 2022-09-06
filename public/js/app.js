@@ -6156,9 +6156,15 @@ var render = function render() {
         return [_vm._v(_vm._s(item.nombres + " " + item.apellidos))];
       }
     }, {
-      key: "item.acciones",
+      key: "item.telefono",
       fn: function fn(_ref2) {
         var item = _ref2.item;
+        return [_vm._v(_vm._s(parseInt(item.telefono)))];
+      }
+    }, {
+      key: "item.acciones",
+      fn: function fn(_ref3) {
+        var item = _ref3.item;
         return [_c("v-icon", {
           staticClass: "mr-2",
           attrs: {
