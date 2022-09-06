@@ -6,6 +6,8 @@ use App\Models\Ruleta;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use App\Events\SpinRouletteEvent;
+use App\Models\Colores;
+use App\Models\Apuestas;
 /**
  * Class RuletumController
  * @package App\Http\Controllers
@@ -29,6 +31,65 @@ class RuletaController extends Controller
         $ruletas = Ruleta::all()->toArray();  
         return response()->json(array_reverse($ruletas));
     }
+
+    public function winner($id)
+    {
+
+        $colors = Colores::all()->where('estado', 'A')->toArray();
+
+        
+        $_apuestas_color= [];
+        $_porcentaje_color= [];
+        $_acumulado= [];
+        $probabilidad_acumulada= 0;
+        foreach ($colors as $key => $value) {
+            $probabilidad = ($value['probabilidad']/100);
+            $probabilidad_acumulada+= $probabilidad;
+            array_push($_apuestas_color,$value['color']);
+            array_push($_porcentaje_color,$probabilidad);
+            array_push($_acumulado,$probabilidad_acumulada);
+            
+        }
+        $rnd = rand(0,100);
+        $numero= $rnd/100;
+
+        $indice_ganador= 0;
+        foreach ($_acumulado as $key => $value) {
+            if ($value>$numero) {
+                if ($key!=0) {
+                    $indice_ganador= rand(1,2);
+                }else{
+                    $indice_ganador= $key;
+                }
+               
+                break;
+            }
+        }
+
+
+      
+        $apuestas = Apuestas::with('color')->where('ruleta_id',$id)->whereRelation('color', 'color', $_apuestas_color[$indice_ganador])->get();   
+
+        $valor_premios=0;
+        foreach ($apuestas as $key => $value) {
+            $valor_premios+=$value->valor;
+            $model_apuesta = Apuestas::findOrFail($value->id);
+            $model_apuesta->fill(['estado'=>'G']);
+            $model_apuesta->save();      
+        }
+
+        $model_ruleta = Ruleta::findOrFail($id);
+        $model_ruleta->fill(['valor_pagado'=>$valor_premios]);
+        $model_ruleta->save();  
+ 
+        
+    } 
+
+    function randomAlpha() {
+        srand(time());
+        $rnd = rand(0,100);
+        return $rnd/100;
+     }
    
 
     /**

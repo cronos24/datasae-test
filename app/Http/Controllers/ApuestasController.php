@@ -42,7 +42,37 @@ class ApuestasController extends Controller
         $total_apostado= 0;
         foreach ($jugadores as $key => $value) {
             $valor = 0;
-            $rand_color= $colors[array_rand($colors)];
+        
+
+            $_apuestas_color= [];
+            $_porcentaje_color= [];
+            $_acumulado= [];
+            $probabilidad_acumulada= 0;
+            foreach ($colors as $key => $value2) {
+                $probabilidad = ($value2['probabilidad']/100);
+                $probabilidad_acumulada+= $probabilidad;
+                array_push($_apuestas_color,['id'=>$value2['id'],'color'=>$value2['color']]);
+                array_push($_porcentaje_color,$probabilidad);
+                array_push($_acumulado,$probabilidad_acumulada);
+                
+            }
+       
+            $rnd = rand(0,100);
+            $numero= $rnd/100;
+
+            $indice_ganador= 0;
+            foreach ($_acumulado as $key3 => $value3) {
+                if ($value3>$numero) {
+                    if ($key3!=0) {
+                        $indice_ganador= rand(1,2);
+                    }else{
+                        $indice_ganador= $key3;
+                    }
+                
+                    break;
+                }
+            }
+           
 
             if ($value['dinero']<=1000) {
                 $valor= $value['dinero'];
@@ -55,7 +85,7 @@ class ApuestasController extends Controller
             'ruleta_id' => $request->ruleta_id,
             'valor' => $valor,
             'jugadores_id' => $value['id'],
-            'colores_id' => $rand_color['id'],
+            'colores_id' => $_apuestas_color[$indice_ganador]['id'],
             'estado' => 'A'
             ];
 
@@ -80,7 +110,9 @@ class ApuestasController extends Controller
         event(new SpinRouletteEvent());
 
         return $model_ruleta;
-    }       
+    }    
+    
+     
 
 
     

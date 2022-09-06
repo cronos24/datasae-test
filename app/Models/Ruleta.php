@@ -66,7 +66,7 @@ class Ruleta extends Model
      */
     public function apuestas()
     {
-        return $this->hasMany('App\Models\Apuesta', 'ruleta_id', 'id');
+        return $this->hasMany('App\Models\Apuestas', 'ruleta_id', 'id');
     }
     
 

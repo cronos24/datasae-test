@@ -58,7 +58,9 @@ class SpinRouletteCommand extends Command
             $model_apuesta->request->add(['ruleta_id'=>$save_ruleta['response']->id,'estado'=>'A']);
             $save_apuesta = $controller_apuesta->store($model_apuesta);
 
-            dd($save_apuesta);
+            if ($save_apuesta) {
+                $controller_ruleta->winner($save_ruleta['response']->id);
+            }
          } 
 
         

@@ -15,7 +15,7 @@ Siga en orden los siguientes pasos de instalación:
 - 2- cd datasae-test
 - 3- composer install
 - 4- npm install
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
+- <a href="https://www.google.com/" target="_blank">Google</a>
 - Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
 - Database agnostic [schema migrations](https://laravel.com/docs/migrations).
 - [Robust background job processing](https://laravel.com/docs/queues).
