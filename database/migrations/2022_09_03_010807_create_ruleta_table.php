@@ -32,7 +32,7 @@ class CreateRuletaTable extends Migration {
 	 */
 	public function down()
 	{
-		Schema::drop('ruleta');
+		Schema::drop('ruletas');
 	}
 
 }
