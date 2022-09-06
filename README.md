@@ -22,10 +22,10 @@ Siga en orden los siguientes pasos de instalación:
 - 1- git clone https://github.com/cronos24/datasae-test.git
 - 2- cd datasae-test
 - 3- composer install
-- 4- npm install
-- 5- php artisan key:generate
-- 6- Renombrar archivo .env.exmaple a .env
-- 7- Configurar archivo .env con nuestras credenciales de base de datos y de pusher.
+- 4- npm install- 
+- 5- Renombrar archivo .env.exmaple a .env
+- 6- Configurar archivo .env con nuestras credenciales de base de datos y de pusher.
+- 7- php artisan key:generate
 - 8- php artisan migrate
 - 9- Configurar nuestro cron en caso de querer probar la tarea automatizada <a href="https://laravel.com/docs/9.x/scheduling" target="_blank">documentación</a> 
 - 10- En caso de querer probar manualmente ejecutar el comando "php artisan spin:roulette"
