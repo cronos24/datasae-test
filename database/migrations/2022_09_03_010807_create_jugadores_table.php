@@ -19,7 +19,7 @@ class CreateJugadoresTable extends Migration {
 			$table->integer('n_documento');
 			$table->string('nombres', 60);
 			$table->string('apellidos', 60);
-			$table->integer('telefono');			
+			$table->decimal('telefono', 16, 2);			
 			$table->decimal('dinero', 12, 2)->default(10000.00);
 			$table->char('estado', 1)->default('A');
 			$table->timestamps();
