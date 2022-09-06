@@ -31,7 +31,7 @@ class Jugadores extends Model
             'n_documento' => 'required|integer',
             'nombres' => 'required|string|max:60',
             'apellidos' => 'required|string|max:60',
-            'telefono' => 'required|integer',
+            'telefono' => 'required|numeric',
             'dinero' => 'required|numeric',
             'estado' => 'required|max:1',
         ];
