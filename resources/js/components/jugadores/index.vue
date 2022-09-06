@@ -245,10 +245,14 @@
         },
         methods: {  
         crear() {
+            this.$refs.form.reset()
+            this.$refs.form.resetValidation()
             this.dialog = true
             this.scenario = 'create'
         },
         editItem(item){
+            this.$refs.form.reset()
+            this.$refs.form.resetValidation()
             this.model= JSON.parse(JSON.stringify(item));
             this.scenario = 'update'
             this.dialog = true
