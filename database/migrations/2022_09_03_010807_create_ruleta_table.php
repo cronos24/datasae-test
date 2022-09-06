@@ -13,7 +13,7 @@ class CreateRuletaTable extends Migration {
 	 */
 	public function up()
 	{
-		Schema::create('ruleta', function(Blueprint $table)
+		Schema::create('ruletas', function(Blueprint $table)
 		{
 			$table->integer('id', true);
 			$table->dateTime('fecha');
