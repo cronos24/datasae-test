@@ -25,6 +25,7 @@ import vuetify from './vuetify';
 Vue.component('example-component', require('./components/ExampleComponent.vue').default);
 Vue.component('jugadores-component', require('./components/jugadores/index.vue').default);
 Vue.component('ruletas-component', require('./components/ruletas/index.vue').default);
+Vue.component('apuestas-component', require('./components/apuestas/index.vue').default);
 /**
  * Next, we will create a fresh Vue application instance and attach it to
  * the page. Then, you may begin adding components to this application

@@ -4,6 +4,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\JugadoresController;
 use App\Http\Controllers\RuletaController;
+use App\Http\Controllers\ApuestasController;
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -22,5 +23,6 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 Route::middleware('api')->group(function () {
     Route::resource('jugadores', JugadoresController::class);   
     Route::resource('ruletas', RuletaController::class);   
+    Route::get('apuestas/{id}',[ApuestasController::class, 'index']);  
 });
 

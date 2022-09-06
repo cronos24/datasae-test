@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Ruleta;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
 use App\Events\SpinRouletteEvent;
 /**
  * Class RuletumController
@@ -39,7 +40,8 @@ class RuletaController extends Controller
     public function store(Request $request)
     {
   
-        $validator=Ruleta::make($request->all(),Ruleta::rules(),Ruleta::messages(),Ruleta::attributes());
+
+        $validator=Validator::make($request->all(),Ruleta::rules(),Ruleta::messages(),Ruleta::attributes());
         
         if($validator->fails())
         {
@@ -53,7 +55,7 @@ class RuletaController extends Controller
                 
         }
 
-        return response()->json($response);
+        return $response;
     }
 
     /**

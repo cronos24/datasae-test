@@ -4,7 +4,10 @@ namespace App\Http\Controllers;
 
 use App\Models\Apuestas;
 use Illuminate\Http\Request;
-
+use App\Models\Colores;
+use App\Models\Jugadores;
+use App\Models\Ruleta;
+use App\Events\SpinRouletteEvent;
 /**
  * Class ApuestaController
  * @package App\Http\Controllers
@@ -16,24 +19,13 @@ class ApuestasController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
-    {
-        $apuestas = Apuestas::paginate();
-
-        return view('apuesta.index', compact('apuestas'))
-            ->with('i', (request()->input('page', 1) - 1) * $apuestas->perPage());
+    public function index($id)
+    {     
+        $apuestas =  Apuestas::with('color', 'jugador')->where('ruleta_id', $id)->get();       
+        return response()->json($apuestas);
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        $apuesta = new Apuestas();
-        return view('apuesta.create', compact('apuesta'));
-    }
+  
 
     /**
      * Store a newly created resource in storage.
@@ -43,67 +35,53 @@ class ApuestasController extends Controller
      */
     public function store(Request $request)
     {
-        request()->validate(Apuestas::$rules);
+ 
+        $colors = Colores::all()->where('estado', 'A')->toArray();
+        $jugadores = Jugadores::all()->where('dinero', '>',0)->toArray(); 
+        
+        $total_apostado= 0;
+        foreach ($jugadores as $key => $value) {
+            $valor = 0;
+            $rand_color= $colors[array_rand($colors)];
 
-        $apuesta = Apuestas::create($request->all());
+            if ($value['dinero']<=1000) {
+                $valor= $value['dinero'];
+            }else{
+                $porcentaje = rand(8, 15);
+                $valor= $value['dinero']*$porcentaje/100;
+            }
+           
+            $model_apuesta= [
+            'ruleta_id' => $request->ruleta_id,
+            'valor' => $valor,
+            'jugadores_id' => $value['id'],
+            'colores_id' => $rand_color['id'],
+            'estado' => 'A'
+            ];
 
-        return redirect()->route('apuestas.index')
-            ->with('success', 'Apuesta created successfully.');
-    }
+            $model = new Apuestas;
+            $model->fill($model_apuesta);
+            $saved = $model->save();
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        $apuesta = Apuestas::find($id);
+            if ($saved) {
+                $model_jugadores = Jugadores::findOrFail($value['id']);
+                $model_jugadores->fill(['dinero'=>($value['dinero']-$valor)]);
+                $model_jugadores->save();
 
-        return view('apuesta.show', compact('apuesta'));
-    }
+                $total_apostado += $valor;
+            }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        $apuesta = Apuestas::find($id);
+        }
 
-        return view('apuesta.edit', compact('apuesta'));
-    }
+        $model_ruleta = Ruleta::findOrFail($request->ruleta_id);
+        $model_ruleta->fill(['valor_apostado'=>$total_apostado]);
+        $model_ruleta->save();
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request $request
-     * @param  Apuesta $apuesta
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, Apuestas $apuesta)
-    {
-        request()->validate(Apuestas::$rules);
+        event(new SpinRouletteEvent());
 
-        $apuesta->update($request->all());
+        return $model_ruleta;
+    }       
 
-        return redirect()->route('apuestas.index')
-            ->with('success', 'Apuesta updated successfully');
-    }
 
-    /**
-     * @param int $id
-     * @return \Illuminate\Http\RedirectResponse
-     * @throws \Exception
-     */
-    public function destroy($id)
-    {
-        $apuesta = Apuestas::find($id)->delete();
-
-        return redirect()->route('apuestas.index')
-            ->with('success', 'Apuesta deleted successfully');
-    }
+    
 }

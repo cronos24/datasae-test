@@ -46,23 +46,23 @@ class Apuestas extends Model
     /**
      * @return \Illuminate\Database\Eloquent\Relations\HasOne
      */
-    public function colore()
+    public function color()
     {
-        return $this->hasOne('App\Models\Colore', 'id', 'colores_id');
+        return $this->hasOne('App\Models\Colores', 'id', 'colores_id');
     }
     
     /**
      * @return \Illuminate\Database\Eloquent\Relations\HasOne
      */
-    public function jugadore()
+    public function jugador()
     {
-        return $this->hasOne('App\Models\Jugadore', 'id', 'jugadores_id');
+        return $this->hasOne('App\Models\Jugadores', 'id', 'jugadores_id');
     }
     
     /**
      * @return \Illuminate\Database\Eloquent\Relations\HasOne
      */
-    public function ruletum()
+    public function ruleta()
     {
         return $this->hasOne('App\Models\Ruletum', 'id', 'ruleta_id');
     }

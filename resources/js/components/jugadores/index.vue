@@ -154,6 +154,11 @@
             :items-per-page="10"
             class="elevation-2"
         >
+        <template v-slot:top>
+        <v-toolbar flat>
+            <v-toolbar-title>Jugadores</v-toolbar-title>
+        </v-toolbar>
+        </template>
         <template v-slot:[`item.full_name`]="{ item }">{{ item.nombres +' '+ item.apellidos }}</template>
         <template v-slot:[`item.acciones`]="{ item }">
             <v-icon

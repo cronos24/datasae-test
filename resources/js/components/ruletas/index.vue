@@ -7,10 +7,22 @@
             :headers="headers"
             :items="this.ruletas_list"
             :items-per-page="10"
+            :single-expand="singleExpand"
+            :expanded.sync="expanded"
+            show-expand
             class="elevation-2"
         >
 
-        <template v-slot:[`item.acciones`]="{ item }">
+        <template v-slot:top>
+        <v-toolbar flat>
+            <v-toolbar-title>Ruletas</v-toolbar-title>      
+        </v-toolbar>
+        </template>
+        <template v-slot:expanded-item="{ item }">
+            <apuestas-component :ruleta="item"></apuestas-component>
+        </template>
+
+        <!-- <template v-slot:[`item.acciones`]="{ item }">
             <v-icon
                 small
                 class="mr-2"
@@ -19,7 +31,7 @@
                 mdi-eye
             </v-icon>
          
-        </template>
+        </template> -->
  
         </v-data-table>
 
@@ -39,11 +51,13 @@
                  dialogDelete: false,
                  ruletas_list : this.ruletas,
                  scenario: null,
+                 expanded: [],
+                 singleExpand: false,
                 headers: [    
                 { text: 'Fecha', value: 'fecha' },                
                 { text: 'Total Apostado', value: 'valor_apostado' },
                 { text: 'Valor Pagado', value: 'valor_pagado' },
-                { text: 'Estado', value: 'acciones', sortable: false },
+                { text: '', value: 'data-table-expand' },
                 ],               
                 url: '/api/jugadores',
                 errors: []
