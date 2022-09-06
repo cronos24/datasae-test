@@ -7,7 +7,9 @@
 <a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
 </p>
 
-## Requisiros
+
+
+## Requisitos
 - 1- <a href="https://getcomposer.org/download/" target="_blank">Composer</a> 
 - 2- <a href="https://nodejs.org/es/download/" target="_blank">Node Js V14</a> 
 - 3- <a href="https://www.php.net/downloads" target="_blank">Php >= 7.3</a> 
