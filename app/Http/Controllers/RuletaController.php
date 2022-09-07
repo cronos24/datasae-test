@@ -2,12 +2,15 @@
 
 namespace App\Http\Controllers;
 
+use App\Events\JugadoresEvent;
 use App\Models\Ruleta;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use App\Events\SpinRouletteEvent;
 use App\Models\Colores;
 use App\Models\Apuestas;
+use App\Models\Jugadores;
+
 /**
  * Class RuletumController
  * @package App\Http\Controllers
@@ -75,12 +78,23 @@ class RuletaController extends Controller
             $valor_premios+=$value->valor;
             $model_apuesta = Apuestas::findOrFail($value->id);
             $model_apuesta->fill(['estado'=>'G']);
-            $model_apuesta->save();      
+            $model_apuesta->save();     
+            
+
+            $color= Colores::find($value->colores_id);   
+            
+
+            $jugador = Jugadores::findOrFail($value->jugadores_id);        
+            $dinero_jugador= ($value->valor*$color->recompensa)+$jugador->dinero;            
+            $jugador->fill(['dinero'=>$dinero_jugador]);
+            $jugador->save(); 
+            event(new JugadoresEvent());
         }
 
         $model_ruleta = Ruleta::findOrFail($id);
         $model_ruleta->fill(['valor_pagado'=>$valor_premios]);
         $model_ruleta->save();  
+        event(new SpinRouletteEvent()); 
  
         
     } 
